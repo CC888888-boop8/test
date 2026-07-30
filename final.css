@@ -1208,3 +1208,81 @@ body.preview-active {
   vertical-align: -1px !important;
   transform: none !important;
 }
+
+/* v85 — desktop and tablet expanded ebook.
+   Mobile (700px and below) is intentionally untouched.
+   Chrome, Safari and Edge use the same width-driven sizing; vertical overflow
+   stays inside the modal and never shrinks the pages. */
+@media (min-width: 701px) {
+  body:has(.ebook.expanded) {
+    overflow: hidden !important;
+  }
+
+  .ebook.expanded {
+    position: fixed !important;
+    top: 8px !important;
+    top: max(8px, env(safe-area-inset-top)) !important;
+    right: auto !important;
+    bottom: 8px !important;
+    bottom: max(8px, env(safe-area-inset-bottom)) !important;
+    left: 50% !important;
+    z-index: 10000 !important;
+    width: min(1280px, calc(100vw - 16px)) !important;
+    max-width: calc(100vw - 16px) !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    transform: translateX(-50%) !important;
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+  }
+
+  .ebook.expanded .ebook-spread,
+  .ebook.expanded .ebook-spread:not(.single) {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: min(1220px, calc(100vw - 48px)) !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  .ebook.expanded .ebook-spread.single {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: min(900px, calc(100vw - 48px)) !important;
+    max-width: 900px !important;
+  }
+
+  .ebook.expanded .ebook-page,
+  .ebook.expanded .ebook-spread.single .ebook-page,
+  .ebook.expanded .ebook-spread:not(.single) .ebook-page {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+  }
+
+  .ebook.expanded .ebook-page img,
+  .ebook.expanded .ebook-spread.single .ebook-page img,
+  .ebook.expanded .ebook-spread:not(.single) .ebook-page img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+
+  .ebook.expanded .ebook-close {
+    position: fixed !important;
+    top: max(14px, env(safe-area-inset-top)) !important;
+    right: max(14px, env(safe-area-inset-right)) !important;
+    z-index: 10030 !important;
+  }
+}
