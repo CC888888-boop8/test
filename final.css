@@ -1108,3 +1108,78 @@ body.preview-active {
     z-index: 10030 !important;
   }
 }
+
+/* v83 — repair the taiji join without changing the portal link or click area. */
+.culture-portals > a[href="#services"] > i::before {
+  inset: 22% !important;
+  border-radius: 50% !important;
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      #7d100d 0 7%,
+      #f2dfb5 7.5% 26.5%,
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 50% 75%,
+      #f2dfb5 0 7%,
+      #7d100d 7.5% 26.5%,
+      transparent 27%
+    ),
+    linear-gradient(90deg, #f2dfb5 0 50%, #7d100d 50% 100%) !important;
+  background-clip: padding-box !important;
+  box-shadow: 0 0 0 2px #7d100d !important;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* v83 — match 播放／放大觀看 with the −10 and +10 control text. */
+.video-buttons button:first-child::before,
+.video-actions button:last-child::before {
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  font-weight: inherit !important;
+}
+
+.video-buttons button:first-child::after {
+  margin-left: 6px !important;
+}
+
+.video-actions button:last-child::after {
+  width: 12px !important;
+  height: 12px !important;
+  margin-left: 6px !important;
+}
+
+/* v83 — expanded tablet pages are always larger than the inline preview.
+   Height no longer shrinks the pages; the isolated modal scrolls instead. */
+@media (min-width: 701px) and (max-width: 1180px) {
+  .ebook.expanded .ebook-spread,
+  .ebook.expanded .ebook-spread:not(.single) {
+    width: min(1180px, calc(100vw - 48px)) !important;
+    max-width: none !important;
+  }
+
+  .ebook.expanded .ebook-spread.single {
+    width: min(760px, calc(100vw - 48px)) !important;
+    max-width: 760px !important;
+  }
+
+  .ebook.expanded .ebook-page,
+  .ebook.expanded .ebook-spread.single .ebook-page,
+  .ebook.expanded .ebook-spread:not(.single) .ebook-page {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  .ebook.expanded .ebook-page img,
+  .ebook.expanded .ebook-spread.single .ebook-page img,
+  .ebook.expanded .ebook-spread:not(.single) .ebook-page img {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    object-fit: contain !important;
+  }
+}
