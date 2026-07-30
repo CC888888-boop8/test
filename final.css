@@ -1183,3 +1183,28 @@ body.preview-active {
     object-fit: contain !important;
   }
 }
+
+/* v84 final precedence — fixed taiji artwork and smaller play triangle. */
+.culture-portals > a[href="#services"] > i::before {
+  inset: 19% !important;
+  border-radius: 50% !important;
+  background-color: transparent !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23f2dfb5' stroke='%237d100d' stroke-width='4'/%3E%3Cpath d='M50 2a48 48 0 0 1 0 96c24 0 24-48 0-48S26 2 50 2Z' fill='%237d100d'/%3E%3Ccircle cx='50' cy='26' r='5' fill='%23f2dfb5'/%3E%3Ccircle cx='50' cy='74' r='5' fill='%237d100d'/%3E%3C/svg%3E") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% 100% !important;
+  box-shadow: none !important;
+  transform: none !important;
+  backface-visibility: visible !important;
+}
+
+.video-buttons button:first-child[aria-label="播放"]::after {
+  width: 0 !important;
+  height: 0 !important;
+  margin-left: 5px !important;
+  border-top: 5px solid transparent !important;
+  border-bottom: 5px solid transparent !important;
+  border-left: 8px solid #f6d58d !important;
+  vertical-align: -1px !important;
+  transform: none !important;
+}
