@@ -1,0 +1,23 @@
+天聖宮免費網站移植版｜使用說明
+
+推薦免費平台
+1. Cloudflare Pages：https://pages.cloudflare.com/
+2. Netlify Drop：https://app.netlify.com/drop
+3. GitHub Pages：https://pages.github.com/
+
+快速發布
+1. 解壓縮下載的天聖宮網站 ZIP。
+2. 將解壓後的整個資料夾上傳到免費靜態網站平台。
+3. 首頁檔案是 index.html；管理台是 admin.html。
+4. 發布後開啟「網站網址/admin.html」，即可修改文字、圖片並預覽五種裝置。
+
+內容修改
+1. 在管理台儲存草稿，可立即於目前瀏覽器預覽。
+2. 使用「匯出變更檔」下載 tiansheng-site-changes.json。
+3. 若要讓所有訪客看到新內容，請把變更檔及新圖片交給網站維護者套用，再重新上傳資料夾。
+
+裝置預覽
+管理台提供網頁版、iPad／平板、Android 平板、iOS 手機與 Android 手機五種寬度。
+
+注意
+Google 地圖、Messenger 與 Facebook 內容需要網路連線。影片與電子書已包含在移植版內。

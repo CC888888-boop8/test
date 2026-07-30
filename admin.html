@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>天聖宮可編輯網站管理台</title>
+    <link rel="stylesheet" href="/admin.css" />
+    <link rel="stylesheet" href="/admin-cms.css" />
+  </head>
+  <body>
+    <header class="admin-top">
+      <div class="admin-brand">
+        <img src="/tiansheng-logo.png" alt="" />
+        <span><b>可編輯網站管理台</b><small>基隆天聖宮玉院・石門五府千歲宮</small></span>
+      </div>
+      <div class="admin-actions">
+        <a href="/" target="_blank">開啟網站 ↗</a>
+        <a class="primary-link" href="https://app.pagescms.org/" target="_blank" rel="noreferrer">開啟 Pages CMS ↗</a>
+      </div>
+    </header>
+    <main class="admin-shell">
+      <aside>
+        <p>CONTENT STUDIO</p>
+        <nav>
+          <button class="active" data-panel="edit">編輯內容</button>
+          <button data-panel="preview">裝置預覽</button>
+          <button data-panel="platforms">平台操作</button>
+        </nav>
+        <div class="admin-note">
+          <b>正式內容模式</b>
+          <span>Pages CMS 儲存後會寫入 GitHub，Cloudflare Pages 會自動更新網站。</span>
+        </div>
+      </aside>
+      <section class="workspace">
+        <div class="panel active" id="panel-edit">
+          <div class="panel-head">
+            <div><small>EDIT ALL CONTENT</small><h1>修改全部文字與照片</h1></div>
+          </div>
+          <section class="cms-hero">
+            <div>
+              <small>PAGES CMS</small>
+              <h2>從同一個後台管理整個網站</h2>
+              <p>可修改首頁、宮主、電子書、影片、募捐案例、成果相簿、祈安服務、參拜指南、Facebook、聯絡方式與頁尾。</p>
+            </div>
+            <a href="https://app.pagescms.org/" target="_blank" rel="noreferrer">進入內容後台 <span>→</span></a>
+          </section>
+          <ol class="publish-list">
+            <li><b>登入</b><span>使用擁有網站資料庫的 GitHub 帳號登入 Pages CMS。</span></li>
+            <li><b>選擇網站</b><span>開啟天聖宮網站資料庫，再選「天聖宮網站全部內容」。</span></li>
+            <li><b>修改內容</b><span>展開要修改的區塊；文字直接輸入，照片使用圖片選擇器上傳或更換。</span></li>
+            <li><b>儲存發布</b><span>按儲存後，GitHub 會保留修改紀錄，Cloudflare Pages 會自動更新。</span></li>
+          </ol>
+          <div class="publish-callout">
+            <b>不會改到版型</b>
+            <p>後台只開放文字、圖片、影片、連結與地址欄位；網站排版、動畫與跨裝置樣式仍維持第 50 版。</p>
+          </div>
+        </div>
+
+        <div class="panel" id="panel-preview">
+          <div class="panel-head">
+            <div><small>RESPONSIVE PREVIEW</small><h1>五種裝置預覽</h1></div>
+            <div class="device-tabs">
+              <button data-width="1440" class="active">網頁版</button>
+              <button data-width="820">iPad／平板</button>
+              <button data-width="768">Android 平板</button>
+              <button data-width="390">iOS 手機</button>
+              <button data-width="412">Android 手機</button>
+            </div>
+          </div>
+          <p class="preview-help">Pages CMS 儲存後，等待 Cloudflare 完成更新，再按右上方「開啟網站」或重新整理下方預覽。</p>
+          <div class="preview-stage">
+            <iframe id="previewFrame" src="/" title="網站裝置預覽"></iframe>
+          </div>
+        </div>
+
+        <div class="panel" id="panel-platforms">
+          <div class="panel-head">
+            <div><small>PLATFORM GUIDE</small><h1>各平台操作</h1></div>
+          </div>
+          <div class="platform-grid">
+            <article>
+              <span>01</span><h2>GitHub</h2>
+              <p>保存網站、文字與照片，並保留每次修改紀錄。</p>
+              <ol><li>建立網站資料庫</li><li>上傳本資料夾全部內容</li><li>連接 Pages CMS 與 Cloudflare</li></ol>
+              <a href="https://github.com/" target="_blank" rel="noreferrer">開啟 GitHub ↗</a>
+            </article>
+            <article>
+              <span>02</span><h2>Cloudflare Pages</h2>
+              <p>免費託管網站；GitHub 有新修改時會自動部署。</p>
+              <ol><li>連接 GitHub 帳號</li><li>選擇天聖宮資料庫</li><li>輸出目錄設為「.」</li></ol>
+              <a href="https://dash.cloudflare.com/" target="_blank" rel="noreferrer">開啟 Cloudflare ↗</a>
+            </article>
+            <article>
+              <span>03</span><h2>Pages CMS</h2>
+              <p>真正修改所有文字、圖片、影片與成果相簿的內容後台。</p>
+              <ol><li>用 GitHub 登入</li><li>選擇天聖宮資料庫</li><li>編輯後按儲存</li></ol>
+              <a href="https://app.pagescms.org/" target="_blank" rel="noreferrer">開啟 Pages CMS ↗</a>
+            </article>
+          </div>
+          <a class="manual-download" href="/操作手冊.md" download>下載完整操作手冊 <span>↓</span></a>
+        </div>
+      </section>
+    </main>
+    <script src="/admin.js"></script>
+  </body>
+</html>

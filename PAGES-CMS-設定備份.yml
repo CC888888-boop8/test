@@ -1,0 +1,280 @@
+media:
+  - name: site_images
+    label: 網站主要圖片
+    input: .
+    output: /
+    extensions: [png, jpg, jpeg, webp, gif]
+  - name: donation_images
+    label: 募捐與成果照片
+    input: donations
+    output: /donations
+    extensions: [png, jpg, jpeg, webp]
+  - name: biography_images
+    label: 電子書圖片
+    input: biography-pages
+    output: /biography-pages
+    extensions: [jpg, jpeg, png, webp]
+  - name: videos
+    label: 影片與封面
+    input: videos
+    output: /videos
+    extensions: [mp4, webm, jpg, jpeg, png, webp]
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: user
+    templates:
+      update: "更新天聖宮網站內容：{path}"
+
+content:
+  - name: website
+    label: 天聖宮網站全部內容
+    type: file
+    path: content/site.json
+    format: json
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+      - name: site
+        label: 基本資料與聯絡連結
+        type: object
+        fields:
+          - { name: browserTitle, label: 瀏覽器標題, type: string, required: true }
+          - { name: description, label: 搜尋引擎簡介, type: text, required: true }
+          - { name: templeName, label: 宮院名稱第一行, type: string, required: true }
+          - { name: branchName, label: 宮院名稱第二行, type: string, required: true }
+          - { name: englishName, label: 英文名稱, type: string }
+          - name: logo
+            label: 網站標誌
+            type: image
+            options: { media: site_images }
+          - { name: phoneDisplay, label: 顯示電話, type: string, required: true }
+          - { name: phoneLink, label: "電話連結（tel:開頭）", type: string, required: true }
+          - { name: messengerUrl, label: Messenger 網址, type: string, required: true }
+          - { name: facebookUrl, label: Facebook 網址, type: string, required: true }
+
+      - name: hero
+        label: 首頁主視覺
+        type: object
+        fields:
+          - { name: eyebrow, label: 上方標語, type: string }
+          - { name: title, label: 主標題第一行, type: string, required: true }
+          - { name: branchTitle, label: 主標題第二行, type: string, required: true }
+          - { name: subtitle, label: 主標語, type: string, required: true }
+          - { name: intro, label: 首頁介紹, type: text, required: true }
+          - { name: caption, label: 圖片說明標題, type: string }
+          - { name: captionTemple, label: 圖片說明宮名, type: string }
+          - name: deityImage
+            label: 首頁神尊照片
+            type: image
+            options: { media: site_images }
+          - name: templeImage
+            label: 首頁融合底圖
+            type: image
+            options: { media: site_images }
+
+      - name: portals
+        label: 壹貳參三個入口
+        type: object
+        list:
+          min: 3
+          max: 3
+          collapsible: { collapsed: true, summary: "{title}" }
+        fields:
+          - { name: english, label: 英文小標, type: string }
+          - { name: title, label: 標題, type: string, required: true }
+          - { name: description, label: 說明, type: string }
+
+      - name: leader
+        label: 宮主介紹
+        type: object
+        fields:
+          - { name: english, label: 英文小標, type: string }
+          - { name: kicker, label: 中文小標, type: string }
+          - { name: title, label: 區塊標題, type: string }
+          - { name: name, label: 宮主名稱, type: string, required: true }
+          - { name: civilName, label: 俗名, type: string }
+          - { name: quote, label: 引言, type: text }
+          - { name: description, label: 宮主介紹文字, type: text }
+          - name: image
+            label: 宮主照片
+            type: image
+            options: { media: site_images }
+
+      - name: biography
+        label: 電子書
+        type: object
+        fields:
+          - { name: english, label: 英文小標, type: string }
+          - { name: title, label: 電子書標題, type: string }
+          - { name: description, label: 電子書說明, type: text }
+          - name: cover
+            label: 封面
+            type: image
+            options: { media: biography_images }
+          - name: backCover
+            label: 封底
+            type: image
+            options: { media: biography_images }
+          - name: pages
+            label: 內頁（依順序）
+            type: image
+            list:
+              min: 1
+              collapsible: false
+            options: { media: biography_images }
+
+      - name: videoSection
+        label: 影片區
+        type: object
+        fields:
+          - { name: english, label: 英文小標, type: string }
+          - { name: title, label: 影片區標題, type: string }
+          - { name: description, label: 影片區說明, type: text }
+          - name: videos
+            label: 三支影片
+            type: object
+            list:
+              min: 3
+              max: 3
+              collapsible: { collapsed: true, summary: "{title}" }
+            fields:
+              - { name: title, label: 影片標題, type: string }
+              - { name: description, label: 影片說明, type: text }
+              - name: poster
+                label: 預覽封面
+                type: image
+                options: { media: videos }
+              - name: video
+                label: 影片檔案
+                type: file
+                options: { media: videos, extensions: [mp4, webm] }
+
+      - name: donation
+        label: 募捐成果
+        type: object
+        fields:
+          - { name: english, label: 英文小標, type: string }
+          - { name: title, label: 區塊標題, type: string }
+          - { name: description, label: 區塊說明, type: text }
+          - name: cards
+            label: 四個募捐案例
+            type: object
+            list:
+              min: 4
+              max: 4
+              collapsible: { collapsed: true, summary: "{title}" }
+            fields:
+              - { name: title, label: 案例名稱, type: string, required: true }
+              - { name: description, label: 案例說明, type: text }
+              - name: preview
+                label: 預覽照片
+                type: image
+                options: { media: donation_images }
+              - name: gallery
+                label: 成果相簿
+                type: image
+                list: true
+                options: { media: donation_images }
+          - { name: calloutKicker, label: 募捐諮詢小標, type: string }
+          - { name: calloutTitle, label: 募捐諮詢標題, type: string }
+          - { name: calloutButton, label: 募捐諮詢按鈕, type: string }
+
+      - name: services
+        label: 祈安服務
+        type: object
+        fields:
+          - { name: english, label: 英文小標, type: string }
+          - { name: title, label: 區塊標題, type: string }
+          - { name: description, label: 區塊說明, type: text }
+          - name: consultation
+            label: 開壇濟世
+            type: object
+            fields:
+              - { name: english, label: 英文小標, type: string }
+              - { name: title, label: 標題, type: string }
+              - { name: description, label: 卡片說明, type: text }
+              - { name: detail, label: 詳情內容, type: text }
+          - name: cards
+            label: 五個祈安服務
+            type: object
+            list:
+              min: 5
+              max: 5
+              collapsible: { collapsed: true, summary: "{title}" }
+            fields:
+              - { name: mark, label: 圖卡單字, type: string }
+              - { name: title, label: 服務名稱, type: string }
+              - { name: description, label: 卡片說明, type: text }
+              - { name: detail, label: 詳情內容, type: text }
+
+      - name: guide
+        label: 參拜指南
+        type: object
+        fields:
+          - { name: english, label: 英文小標, type: string }
+          - { name: title, label: 標題第一行, type: string }
+          - { name: subtitle, label: 標題第二行, type: string }
+          - { name: description, label: 區塊說明, type: text }
+          - name: items
+            label: 壹貳參內容
+            type: object
+            list:
+              min: 3
+              max: 3
+              collapsible: { collapsed: true, summary: "{title}" }
+            fields:
+              - { name: title, label: 標題, type: string }
+              - { name: description, label: 說明, type: text }
+
+      - name: social
+        label: Facebook 區塊
+        type: object
+        fields:
+          - { name: english, label: 英文小標, type: string }
+          - { name: title, label: 區塊標題, type: string }
+          - { name: button, label: 前往粉絲專頁按鈕, type: string }
+          - { name: kicker, label: 圖卡小標, type: string }
+          - { name: headline, label: 圖卡標題第一行, type: string }
+          - { name: headlineAccent, label: 圖卡標題第二行, type: string }
+          - { name: description, label: 圖卡說明, type: text }
+
+      - name: contact
+        label: 聯絡與交通
+        type: object
+        fields:
+          - { name: english, label: 英文小標, type: string }
+          - { name: title, label: 區塊標題, type: string }
+          - { name: description, label: 區塊說明, type: text }
+          - name: locations
+            label: 兩個宮址
+            type: object
+            list:
+              min: 2
+              max: 2
+              collapsible: { collapsed: true, summary: "{title}" }
+            fields:
+              - { name: english, label: 英文地名, type: string }
+              - { name: title, label: 宮址標題, type: string }
+              - { name: address, label: 顯示地址, type: string }
+              - { name: mapQuery, label: Google 地圖搜尋地址, type: string }
+              - { name: heading1, label: 交通標題一, type: string }
+              - { name: description1, label: 交通說明一, type: text }
+              - { name: heading2, label: 交通標題二, type: string }
+              - { name: description2, label: 交通說明二, type: text }
+          - { name: phoneLabel, label: 電話區標題, type: string }
+          - { name: messengerButton, label: Messenger 按鈕, type: string }
+
+      - name: footer
+        label: 頁尾
+        type: object
+        fields:
+          - { name: serviceHeading, label: 服務連結標題, type: string }
+          - { name: contactHeading, label: 聯絡連結標題, type: string }
+          - { name: keelungAddress, label: 基隆頁尾地址, type: string }
+          - { name: shimenAddress, label: 石門頁尾地址, type: string }
+          - { name: copyright, label: 版權文字, type: string }

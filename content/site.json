@@ -1,0 +1,285 @@
+{
+  "site": {
+    "browserTitle": "基隆天聖宮玉院·石門五府千歲宮｜聖道無盡·慈暉永傳",
+    "description": "基隆天聖宮玉院·石門五府千歲宮官方網站，提供宮主聖傳、祈安科儀、參拜指南、基隆與石門宮址交通資訊。",
+    "templeName": "基隆天聖宮玉院",
+    "branchName": "石門五府千歲宮",
+    "englishName": "TIAN SHENG GONG YU YUAN",
+    "logo": "/tiansheng-logo.png",
+    "phoneDisplay": "(02) 2462-2033",
+    "phoneLink": "tel:+886224622033",
+    "messengerUrl": "https://m.me/61583931960613",
+    "facebookUrl": "https://www.facebook.com/profile.php?id=61583931960613"
+  },
+  "hero": {
+    "eyebrow": "護境濟世・福澤萬民",
+    "title": "基隆天聖宮玉院",
+    "branchTitle": "石門五府千歲宮",
+    "subtitle": "聖道無盡·慈暉永傳",
+    "intro": "以敬天愛人為本，以慈心濟世為念。承續五府千歲威靈，守護地方、安定人心，讓信仰與善念世代相傳。",
+    "caption": "五府神威・浩蕩普照",
+    "captionTemple": "基隆天聖宮玉院·石門五府千歲宮",
+    "deityImage": "/temple-deities-no-sign.png",
+    "templeImage": "/hero-production.png"
+  },
+  "portals": [
+    {
+      "english": "SPIRITUAL HERITAGE",
+      "title": "宮主與道脈",
+      "description": "慈心濟世・薪火相傳"
+    },
+    {
+      "english": "BLESSING RITES",
+      "title": "祈安科儀",
+      "description": "點燈祈福・迎祥納吉"
+    },
+    {
+      "english": "VISITING GUIDE",
+      "title": "參拜禮序",
+      "description": "敬神有禮・心誠則靈"
+    }
+  ],
+  "leader": {
+    "english": "TEMPLE LEADER",
+    "kicker": "慈暉長在・道脈永傳",
+    "title": "宮主介紹",
+    "name": "圓根真月上慈聖人",
+    "civilName": "俗名｜謝許月鶯（聖姑）",
+    "quote": "「解決別人的困難，就是我們的幸福。慈暉廣被利人天，聖德輝煌傳萬世。」",
+    "description": "以一生的赤誠守護聖道，以滿心慈悲點亮迷津。宮主秉持敬天、愛人、無私的初心，承擔濟世、勸善與文化傳承之責，陪伴善信在信仰中安定身心。",
+    "image": "/temple-leader.png"
+  },
+  "biography": {
+    "english": "THE SACRED BIOGRAPHY",
+    "title": "《謝許月鶯傳記》",
+    "description": "以文字、圖像與影音，記錄宮主一生守道濟世的足跡，讓慈暉與信念流傳於世代之間。",
+    "cover": "/biography-pages/cover.jpg",
+    "backCover": "/biography-pages/back-cover.jpg",
+    "pages": [
+      "/biography-pages/page-01.jpg",
+      "/biography-pages/page-02.jpg",
+      "/biography-pages/page-03.jpg",
+      "/biography-pages/page-04.jpg",
+      "/biography-pages/page-05.jpg",
+      "/biography-pages/page-06.jpg",
+      "/biography-pages/page-07.jpg",
+      "/biography-pages/page-08.jpg",
+      "/biography-pages/page-09.jpg",
+      "/biography-pages/page-10.jpg",
+      "/biography-pages/page-11.jpg",
+      "/biography-pages/page-12.jpg",
+      "/biography-pages/page-13.jpg",
+      "/biography-pages/page-14.jpg",
+      "/biography-pages/page-15.jpg",
+      "/biography-pages/page-16.jpg",
+      "/biography-pages/page-17.jpg",
+      "/biography-pages/page-18.jpg",
+      "/biography-pages/page-19.jpg",
+      "/biography-pages/page-20.jpg",
+      "/biography-pages/page-21.jpg",
+      "/biography-pages/page-22.jpg",
+      "/biography-pages/page-23.jpg",
+      "/biography-pages/page-24.jpg",
+      "/biography-pages/page-25.jpg",
+      "/biography-pages/page-26.jpg",
+      "/biography-pages/page-27.jpg",
+      "/biography-pages/page-28.jpg",
+      "/biography-pages/page-29.jpg",
+      "/biography-pages/page-30.jpg",
+      "/biography-pages/page-31.jpg",
+      "/biography-pages/page-32.jpg",
+      "/biography-pages/page-33.jpg",
+      "/biography-pages/page-34.jpg",
+      "/biography-pages/page-35.jpg",
+      "/biography-pages/page-36.jpg",
+      "/biography-pages/page-37.jpg",
+      "/biography-pages/page-38.jpg",
+      "/biography-pages/page-39.jpg",
+      "/biography-pages/page-40.jpg"
+    ]
+  },
+  "videoSection": {
+    "english": "ANIMATED TEMPLE STORIES",
+    "title": "宮廟介紹動畫",
+    "description": "三支宮方完整動畫，可直接於網站播放。",
+    "videos": [
+      {
+        "title": "宮廟文化動畫・第一篇",
+        "description": "宮方提供之完整改版動畫",
+        "poster": "/videos/temple-story-01.jpg",
+        "video": "/videos/temple-story-01.mp4"
+      },
+      {
+        "title": "宮廟文化動畫・第二篇",
+        "description": "宮方提供之完整配音動畫",
+        "poster": "/videos/temple-story-02.jpg",
+        "video": "/videos/temple-story-02.mp4"
+      },
+      {
+        "title": "宮廟文化動畫・第三篇",
+        "description": "宮方提供之完整音效動畫",
+        "poster": "/videos/temple-story-03.jpg",
+        "video": "/videos/temple-story-03.mp4"
+      }
+    ]
+  },
+  "donation": {
+    "english": "GOOD DEEDS IN ACTION",
+    "title": "募捐成果紀錄",
+    "description": "善款使用與成果照片將依宮方確認資料持續更新，讓每一份護持都有清楚可見的去向。",
+    "cards": [
+      {
+        "title": "麥寮橋頭鎮聖宮",
+        "description": "護持宮殿建設與信仰文化活動，使地方香火與傳承得以延續。",
+        "preview": "/donations/maoliao-zhensheng-1.webp",
+        "gallery": [
+          "/donations/maoliao-zhensheng-1.webp",
+          "/donations/maoliao-zhensheng-2.webp",
+          "/donations/maoliao-zhensheng-3.webp"
+        ]
+      },
+      {
+        "title": "麥寮天聖宮玉院禪房大樓",
+        "description": "協助禪房大樓建設與空間整備，完善宗教服務及信眾使用環境。",
+        "preview": "/donations/maoliao-building-1.webp",
+        "gallery": [
+          "/donations/maoliao-building-1.webp",
+          "/donations/maoliao-building-2.webp"
+        ]
+      },
+      {
+        "title": "施厝勒建慈聖宮",
+        "description": "護持宮務、祭典與地方文化活動，凝聚社區善念與信仰力量。",
+        "preview": "/donations/shicuo-cisheng-1.webp",
+        "gallery": [
+          "/donations/shicuo-cisheng-1.webp",
+          "/donations/shicuo-cisheng-2.webp"
+        ]
+      },
+      {
+        "title": "石門五府千歲宮",
+        "description": "投入宮院建設、擋土工程、殿內整備與科儀活動，逐步成就莊嚴道場。",
+        "preview": "/donations/shimen-wufu-6.webp",
+        "gallery": [
+          "/donations/shimen-wufu-1.webp",
+          "/donations/shimen-wufu-2.webp",
+          "/donations/shimen-wufu-3.webp",
+          "/donations/shimen-wufu-4.webp",
+          "/donations/shimen-wufu-5.webp",
+          "/donations/shimen-wufu-7.webp"
+        ]
+      }
+    ],
+    "calloutKicker": "隨喜護持・功德無量",
+    "calloutTitle": "讓善念成為長久的力量",
+    "calloutButton": "捐獻洽詢"
+  },
+  "services": {
+    "english": "BLESSING RITES & SERVICES",
+    "title": "祈安科儀・點燈服務",
+    "description": "心誠一念，神明鑒納；敬奉一燈，照亮平安。",
+    "consultation": {
+      "english": "DAILY SPIRITUAL GUIDANCE",
+      "title": "開壇濟世",
+      "description": "基隆宮址每日 15:30 開壇濟世，歡迎事先聯絡確認當日宮務安排。",
+      "detail": "開壇濟世服務依宮務安排進行，前往前請先以 Messenger 或電話確認日期與時間。"
+    },
+    "cards": [
+      {
+        "mark": "燈",
+        "title": "年度祈福點燈",
+        "description": "依所求心願敬奉光明燈、太歲燈、財利燈、消災延壽燈或文昌燈。",
+        "detail": "依個人祈願選擇合適燈別，實際受理項目與日期請先洽宮方。"
+      },
+      {
+        "mark": "運",
+        "title": "闔家補運",
+        "description": "每月農曆初一、十五舉行闔家補運，祈願消災解厄、福運增長。",
+        "detail": "闔家補運於農曆初一、十五舉行，參加方式與準備資料請先聯絡確認。"
+      },
+      {
+        "mark": "斗",
+        "title": "祈安禮斗法會",
+        "description": "虔誠禮斗、朝真拜聖，祈求本命元辰光彩、消災植福。",
+        "detail": "禮斗法會日期與登記方式依宮方公告，歡迎提前詢問。"
+      },
+      {
+        "mark": "庫",
+        "title": "補財庫・謝天公",
+        "description": "於重要節日補益財庫、答謝天地，祈願財源穩健、平安順遂。",
+        "detail": "補財庫與謝天公依節日及科儀安排辦理，請洽宮方確認。"
+      },
+      {
+        "mark": "渡",
+        "title": "農曆七月十八超渡法會",
+        "description": "農曆七月十八啟建超渡法會，慎終追遠、冥陽兩利。",
+        "detail": "超渡法會登記方式、牌位資料與截止日期請依宮方最新公告。"
+      }
+    ]
+  },
+  "guide": {
+    "english": "VISITING GUIDE",
+    "title": "敬神有禮",
+    "subtitle": "心誠則靈",
+    "description": "如需祭拜或科儀協助，歡迎先以 Messenger 或電話洽詢。",
+    "items": [
+      {
+        "title": "整衣淨心",
+        "description": "入宮前整理衣著、放慢腳步，以恭敬心進入神聖空間。"
+      },
+      {
+        "title": "循序參拜",
+        "description": "依現場指引奉香參拜，向神明稟明姓名、住址與祈求事項。"
+      },
+      {
+        "title": "虔誠不擾",
+        "description": "殿內保持輕聲，拍攝或進行特殊儀式前請先詢問宮方。"
+      }
+    ]
+  },
+  "social": {
+    "english": "FOLLOW OUR TEMPLE",
+    "title": "Facebook 最新動態",
+    "button": "前往粉絲專頁 ↗",
+    "kicker": "宮務動態",
+    "headline": "一炷清香傳心意",
+    "headlineAccent": "一念慈悲結善緣",
+    "description": "追蹤粉絲專頁，掌握祭典、服務與宮務公告。"
+  },
+  "contact": {
+    "english": "VISIT & CONTACT",
+    "title": "聯絡與交通方式",
+    "description": "前往宮院前若有路線或宮務疑問，歡迎來電或透過 Messenger 詢問。",
+    "locations": [
+      {
+        "english": "KEELUNG",
+        "title": "基隆宮址",
+        "address": "基隆市中正區祥豐街449巷43號",
+        "mapQuery": "基隆市中正區祥豐街449巷43號",
+        "heading1": "開車",
+        "description1": "中正路482號（蝦皮）旁巷子右轉，順指標上山。",
+        "heading2": "公車",
+        "description2": "基隆火車站前搭乘 101、103、104。經中正路至「中濱里站」下車，走武昌街104巷上山約20分鐘；經祥豐街至「二信中學站」下車，走449巷上山約10分鐘。"
+      },
+      {
+        "english": "SHIMEN",
+        "title": "石門宮址",
+        "address": "新北市石門區老梅里七股十二之三號",
+        "mapQuery": "新北市石門區老梅里七股12-3號",
+        "heading1": "交通建議",
+        "description1": "建議開車前往。行前如有路況、宮務或路線疑問，歡迎先來電確認。",
+        "heading2": "",
+        "description2": ""
+      }
+    ],
+    "phoneLabel": "宮務聯絡電話",
+    "messengerButton": "Messenger 詢問"
+  },
+  "footer": {
+    "serviceHeading": "宮務服務",
+    "contactHeading": "宮務聯絡",
+    "keelungAddress": "基隆｜基隆市中正區祥豐街449巷43號",
+    "shimenAddress": "石門｜新北市石門區老梅里七股十二之三號",
+    "copyright": "© 基隆天聖宮玉院·石門五府千歲宮"
+  }
+}
