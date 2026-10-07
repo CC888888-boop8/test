@@ -3,7 +3,7 @@ const NAV=[["index.html","⌂","首頁"],["ntpu.html","N","北大"],["nycu.html"
 const SS=window.speechSynthesis;let voices=[],audioBar=null,wordSheet=null,lastSelection="";
 function page(){return location.pathname.split("/").pop()||"index.html"}
 function hash(s){let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h)^s.charCodeAt(i);return(h>>>0).toString(36)}
-function englishScore(t){const latin=(t.match(/[A-Za-z]/g)||[]).length,zh=(t.match(/[\u4e00-\u9fff]/g)||[]).length;return {latin,zh,ok:latin>=14&&latin>Math.max(zh*1.6,8)}}
+function englishScore(t){const latin=(t.match(/[A-Za-z]/g)||[]).length,zh=(t.match(/[\u4e00-\u9fff]/g)||[]).length;return {latin,zh,ok:latin>=14&&zh<=2&&latin>8}}
 function cleanQuestionText(summary){
  const small=summary.querySelector(".small");
  const candidates=[];
