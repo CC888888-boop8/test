@@ -1,1 +1,1 @@
-window.STUDY_AI_ENDPOINT="";
+window.STUDY_AI_ENDPOINT="https://jenna-study-ai-public.vercel.app/api/chat";
