@@ -29,9 +29,7 @@ window.addEventListener("DOMContentLoaded",function(){
       box.innerHTML="<b>追問攻防</b>"+extras.map(z=>"<p><b>"+z[0]+"</b><br>"+z[1]+"</p>").join("");
       d.appendChild(box);
     }
-    const a=document.createElement("a");
-    a.className="src";a.target="_blank";a.rel="noopener";a.href=x[9];a.textContent="查看考生心得來源 ↗";
-    d.appendChild(a);
+    if(x[9]&&String(x[9]).startsWith("http")){const a=document.createElement("a");a.className="src";a.target="_blank";a.rel="noopener";a.href=x[9];a.textContent="查看考生心得來源 ↗";d.appendChild(a);}
     return d;
   }
   const hero=document.createElement("header");hero.className="hero";
