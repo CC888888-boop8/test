@@ -1,0 +1,1 @@
+window.STUDY_AI_ENDPOINT="";
