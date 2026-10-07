@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded",function(){
 const root=document.getElementById("app");
-const hero=document.createElement("header");hero.className="hero";hero.innerHTML='<div class="eyebrow">ENGLISH V4</div><h1>英文面試｜以陽明交大實際英文題為主</h1><p>不再以廣告議題當主軸。先練歷屆英文抽題，再練同一能力軸的延伸。</p>';root.appendChild(hero);
+const hero=document.createElement("header");hero.className="hero";hero.innerHTML='<div class="eyebrow">ENGLISH V4</div><h1>英文面試｜以陽明交大實際英文題為主</h1><p>不再以廣告議題當主軸。先練歷屆英文抽題，再練同一能力軸的延伸。</p>';root.appendChild(hero);const wb=document.createElement("section");wb.className="card";wb.innerHTML='<span class="chip">原 Word 英文題</span><h3>E 10題＋X 12題已補回</h3><p>包含商業／時事與英文研究統計；每個英文區塊都可直接播放。</p><a class="practice" href="word-bank.html?group=E">英文 E 題 →</a> <a class="practice" href="word-bank.html?group=X">英文研究 X 題 →</a>';root.appendChild(wb);
 const BANK=[...NYCU_V4,...NYCU_V6_EXTRA];
 const direct=BANK.filter(x=>x[2].includes("英文")||x[1].startsWith("英文"));
 const section=document.createElement("section");section.className="section";section.innerHTML="<h2>陽明交大｜歷屆英文直接題（"+direct.length+"題）</h2>";root.appendChild(section);
