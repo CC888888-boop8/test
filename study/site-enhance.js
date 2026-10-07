@@ -113,6 +113,8 @@ function enhance(root=document){
  root.querySelectorAll?.("details:not(.note-panel)").forEach(addNotes);root.querySelectorAll?.("summary").forEach(s=>{if(!s.closest(".note-panel"))addQuestionTools(s)});
  root.querySelectorAll?.("details:not(.note-panel)[open]").forEach(d=>d.removeAttribute("open"));
 }
-function go(){topbar();nav();enhance(document);loadVoices();if(SS)SS.onvoiceschanged=loadVoices;document.addEventListener("selectionchange",()=>{const s=window.getSelection()?.toString().trim();if(s)lastSelection=s});const mo=new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nodeType===1)enhance(n)});mo.observe(document.body,{childList:true,subtree:true})}
+function go(){
+ if(!window.QUESTION_TRANSLATIONS){const q=document.createElement("script");q.src="question-translations.js";q.onload=()=>enhance(document);document.head.appendChild(q)}
+ topbar();nav();enhance(document);loadVoices();if(SS)SS.onvoiceschanged=loadVoices;document.addEventListener("selectionchange",()=>{const s=window.getSelection()?.toString().trim();if(s)lastSelection=s});const mo=new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nodeType===1)enhance(n)});mo.observe(document.body,{childList:true,subtree:true})}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go();
 })();
