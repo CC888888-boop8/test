@@ -7,6 +7,18 @@ const options=['<option value="">全部175題</option>'].concat(Object.keys(LABE
 ctrl.innerHTML='<div style="display:flex;gap:8px;flex-wrap:wrap"><input id="search" type="search" placeholder="搜尋題目、題號、關鍵字…" style="flex:1;min-width:210px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface);font:inherit;color:var(--ink)"><select id="group" style="border:1px solid var(--line);border-radius:12px;padding:10px;background:var(--surface);font:inherit;color:var(--ink)">'+options+'</select></div><div id="count" class="meta" style="margin-top:9px"></div>';
 root.appendChild(ctrl);
 const list=document.createElement("section");list.className="section";root.appendChild(list);
+function beginner(x){
+ const g=x.id[0];
+ if(g==="R")return ["這題不是要你背研究名詞，而是確認你真的知道自己的研究每一步在做什麼。","先想：它在問研究問題、變項、測量、方法，還是限制？再把概念套回你的會員研究。"];
+ if(g==="X")return ["這是把研究／統計用簡單英文說清楚，不是在考艱深英文。","先用中文確定自己懂，再用短英文：定義 → 你的例子 → 一個限制。"];
+ if(g==="E")return ["這類英文題重點是商業判斷，不是背新聞。","先回答立場，再講為什麼、企業會受什麼影響、最後補一個風險或限制。"];
+ if(g==="M")return ["這是商管基本功。教授可能用很簡單的名詞確認你是不是只會行銷工作、不懂管理底層概念。","先用一句白話定義，再用你工作看過的例子，最後說這個概念拿來做什麼決策。"];
+ if(g==="G")return ["這不是要你和同學真的討論很久，而是多人同場時快速提出自己的管理判斷。","先講結論，再拆2個理由；如果前面的人講過，就補新的利害關係人、風險或執行層。"];
+ if(g==="P")return ["這是壓力題。教授不是一定覺得你有問題，而是在看你會不會防衛、亂掰，還是能誠實承認限制再說清楚。","先承認合理部分，再用你的真實經歷與準備證明，不要硬凹自己沒有缺點。"];
+ if(g==="N")return ["這題主要在看你的動機、自我認知、研究準備或管理思考能不能前後一致。","回答一定要回到你自己的經歷：設計 → 主管 → 廣告數據 → MyCard → 為什麼現在讀研究所。"];
+ if(g==="Y")return ["交大題目常會從個人一路追到英文、統計或商管知識，所以不能只背漂亮答案。","先把概念講對；教授追問時再補理論、例子與限制，不確定就明確說你理解到哪裡。"];
+ return ["先弄懂問題在問什麼，再答。","不要先背答案。"];
+}
 function card(x){
  const d=document.createElement("details");
  const s=document.createElement("summary");s.innerHTML='<span class="chip">'+x.id+'</span><span class="chip">'+(LABELS[x.id[0]]||"題庫")+'</span><div>'+x.question+'</div>';d.appendChild(s);
