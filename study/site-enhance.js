@@ -130,13 +130,15 @@ function ensureInlineLookup(summary,q){
    '<div class="dict-result"></div><div class="word-links"></div>'+
    '<label>我自己的中文意思<input class="meaning-input" placeholder="例如：retention＝留存"></label>'+
    '<label>我的例句／記法<textarea class="word-note" rows="2" placeholder="用自己的方式記"></textarea></label>'+
-   '<button type="button" class="save-word">★ 存到單字本</button> <a class="vocab-link" href="vocab-notebook.html">我的單字本 →</a>'+
+   '<button type="button" class="save-word">★ 存到單字本</button> <button type="button" class="clear-lookup">清空查字</button> <button type="button" class="remove-lookup">移除這個翻譯／查字區</button> <a class="vocab-link" href="vocab-notebook.html">我的單字本 →</a>'+
    '</div>';
  anchor.insertAdjacentElement("afterend",panel);
  const input=panel.querySelector(".word-input");
  panel.querySelector(".dict-go").onclick=()=>lookupWordInline(panel,q);
  input.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();lookupWordInline(panel,q)}};
  panel.querySelector(".save-word").onclick=()=>{const w=input.value.trim();if(!w)return;saveVocab({word:w,meaning:panel.querySelector(".meaning-input").value.trim(),note:panel.querySelector(".word-note").value.trim(),question:q,page:page()});panel.querySelector(".save-word").textContent="✓ 已存";setTimeout(()=>panel.querySelector(".save-word").textContent="★ 存到單字本",900)};
+ panel.querySelector(".clear-lookup").onclick=()=>{input.value="";panel.querySelector(".dict-result").innerHTML="";panel.querySelector(".word-links").innerHTML="";panel.querySelector(".meaning-input").value="";panel.querySelector(".word-note").value=""};
+ panel.querySelector(".remove-lookup").onclick=()=>panel.remove();
  return panel;
 }
 async function lookupWordInline(panel,q){
@@ -186,12 +188,12 @@ function addNotes(d){
  d.dataset.notesReady="1";d.removeAttribute("open");
  const key=noteKey(d),saved=(()=>{try{return JSON.parse(localStorage.getItem(key)||"{}")}catch(e){return{}}})();
  const p=document.createElement("details");p.className="note-panel";
- p.innerHTML='<summary>✎ 我的作答／筆記 <span class="save-state">自動儲存</span></summary><div class="note-body"><textarea rows="4" placeholder="先不要開答案。把你現在真的會說的版本寫在這裡…"></textarea><input type="text" placeholder="關鍵字／卡住的地方"><label class="done-check"><input type="checkbox"> 我已經口頭回答過這題</label><button type="button" class="clear-note">清除這題筆記</button></div>';
+ p.innerHTML='<summary>✎ 我的作答／筆記 <span class="save-state">自動儲存</span></summary><div class="note-body"><textarea rows="4" placeholder="先不要開答案。把你現在真的會說的版本寫在這裡…"></textarea><input type="text" placeholder="關鍵字／卡住的地方"><label class="done-check"><input type="checkbox"> 我已經口頭回答過這題</label><button type="button" class="clear-note">刪除這題筆記</button></div>';
  const ta=p.querySelector("textarea"),inp=p.querySelector('input[type="text"]'),ck=p.querySelector('input[type="checkbox"]');
  ta.value=saved.answer||"";inp.value=saved.keywords||"";ck.checked=!!saved.done;
  const save=()=>{localStorage.setItem(key,JSON.stringify({answer:ta.value,keywords:inp.value,done:ck.checked,updated:Date.now()}));p.querySelector(".save-state").textContent="已儲存"};
  [ta,inp].forEach(x=>x.addEventListener("input",save));ck.addEventListener("change",save);
- p.querySelector(".clear-note").onclick=e=>{e.preventDefault();if(confirm("清除這題的筆記？")){ta.value="";inp.value="";ck.checked=false;localStorage.removeItem(key);p.querySelector(".save-state").textContent="已清除"}};
+ p.querySelector(".clear-note").onclick=e=>{e.preventDefault();if(confirm("確定刪除這題的筆記嗎？")){ta.value="";inp.value="";ck.checked=false;localStorage.removeItem(key);p.querySelector(".save-state").textContent="已清除"}};
  d.insertAdjacentElement("afterend",p);
 }
 
