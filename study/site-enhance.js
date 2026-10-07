@@ -5,6 +5,8 @@ function page(){return location.pathname.split("/").pop()||"index.html"}
 function hash(s){let h=5381;for(let i=0;i<s.length;i++)h=((h<<5)+h)^s.charCodeAt(i);return(h>>>0).toString(36)}
 function englishScore(t){const latin=(t.match(/[A-Za-z]/g)||[]).length,zh=(t.match(/[\u4e00-\u9fff]/g)||[]).length;return {latin,zh,ok:latin>=14&&zh<=2&&latin>8}}
 function cleanQuestionText(summary){
+ const badge=[...summary.querySelectorAll(".chip,.tag")].map(x=>x.textContent).join(" ");
+ if(/VOCAB|PHRASE|CHUNK/i.test(badge))return "";
  const small=summary.querySelector(".small");
  const candidates=[];
  if(small)candidates.push(small.textContent.trim());
