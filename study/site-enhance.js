@@ -76,26 +76,31 @@ function ensureAudioBar(){
 function speakQuestion(text,btn){
  if(!SS||!text)return;
  ensureAudioBar();
- if(activeButton===btn&&SS.speaking){stopSpeech();return}
- stopSpeech();
- const run=()=>{
+ if(activeButton===btn&&(SS.speaking||SS.pending)){stopSpeech();return}
+ const accent=localStorage.getItem("study-accent")||"us",lang=accent==="uk"?"en-GB":"en-US";
+ const makeUtterance=(useChosenVoice)=>{
    loadVoices();
-   const accent=localStorage.getItem("study-accent")||"us",lang=accent==="uk"?"en-GB":"en-US";
    const u=new SpeechSynthesisUtterance(cleanForSpeech(text));
    u.lang=lang;u.rate=Number(localStorage.getItem("study-rate")||"0.92");u.pitch=1;u.volume=1;
-   const saved=localStorage.getItem("study-voice")||"";
-   const wanted=saved?decodeURIComponent(saved):"";
-   u.voice=voices.find(v=>v.voiceURI===wanted)||bestVoice(lang)||null;
-   activeUtterance=u;activeButton=btn;
-   btn.classList.add("playing");btn.textContent="■ 停止";
+   if(useChosenVoice){
+     const saved=localStorage.getItem("study-voice")||"",wanted=saved?decodeURIComponent(saved):"";
+     u.voice=voices.find(v=>v.voiceURI===wanted)||bestVoice(lang)||null;
+   }
+   activeUtterance=u;activeButton=btn;btn.classList.add("playing");btn.textContent="■ 停止";
    u.onend=()=>resetActiveButton();
-   u.onerror=()=>{resetActiveButton();btn.textContent="播放失敗，再按一次"};
-   try{SS.resume();SS.speak(u);setTimeout(()=>{if(SS.paused)SS.resume()},180)}catch(e){resetActiveButton();btn.textContent="播放失敗，再按一次"}
+   u.onerror=()=>{
+     if(useChosenVoice){
+       try{SS.cancel();SS.resume()}catch(e){}
+       activeUtterance=null;
+       // 指定 voice 在部分 iPhone/Safari 會失敗，改用系統預設英文 voice 再試一次。
+       setTimeout(()=>{const fallback=makeUtterance(false);try{SS.speak(fallback)}catch(e){resetActiveButton();btn.textContent="播放失敗，再按一次"}},40);
+     }else{resetActiveButton();btn.textContent="播放失敗，再按一次"}
+   };
+   return u;
  };
- // iOS/Safari 對 cancel 後立即 speak 偶爾無聲，保留極短間隔且不切句。
- setTimeout(run,120);
+ const startNow=()=>{const u=makeUtterance(true);try{SS.resume();SS.speak(u);setTimeout(()=>{if(SS.paused)SS.resume()},120)}catch(e){resetActiveButton();btn.textContent="播放失敗，再按一次"}};
+ if(SS.speaking||SS.pending){SS.cancel();setTimeout(startNow,60)}else startNow();
 }
-
 function translationFor(q,summary){
  if(window.QUESTION_TRANSLATIONS&&QUESTION_TRANSLATIONS[q])return QUESTION_TRANSLATIONS[q];
  const small=summary.querySelector(".small");
