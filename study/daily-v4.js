@@ -1,33 +1,27 @@
 window.addEventListener("DOMContentLoaded",function(){
 const root=document.getElementById("app");
-const NB=[...NB,...NTPU_V6_EXTRA],YB=[...YB,...NYCU_V6_EXTRA];
-const phases=[
-["10/7–10/10","建立兩校差異＋研究統計底座"],
-["10/11–10/17","北大個人／研究＋交大英文／統計"],
-["10/18–10/24","多人同場補充答＋教授追問"],
-["10/25–10/31","分校Mock＋壓力追問"]
-];
-const hero=document.createElement("header");hero.className="hero";hero.innerHTML='<div class="eyebrow">25-DAY SPRINT V4</div><h1>每日課表｜不再混校、不再混題</h1><p>每天都固定有：北大1題、交大1題、研究／統計、英文、同場口試補充答。後段才進Mock。</p>';root.appendChild(hero);
-const phase=document.createElement("section");phase.className="card";phase.innerHTML="<h3>四階段</h3>"+phases.map(x=>"<p><b>"+x[0]+"</b><br>"+x[1]+"</p>").join("");root.appendChild(phase);
+const NB=[...NTPU_V4,...NTPU_V6_EXTRA],YB=[...NYCU_V4,...NYCU_V6_EXTRA];
+const hero=document.createElement("header");hero.className="hero";hero.innerHTML='<div class="eyebrow">25-DAY SPRINT</div><h1>每日練習｜先懂，再答，再被追問</h1><p>每天固定：北大3題、交大3題、零基礎研究2章、英文1題、多人同場補答1題。後期再加入分校Mock。</p>';root.appendChild(hero);
 const days=document.createElement("div");days.className="daystrip";root.appendChild(days);
-const out=document.createElement("div");root.appendChild(out);
-let d=0;
-function pick(arr,n){return arr[n%arr.length]}
+const out=document.createElement("div");root.appendChild(out);let d=0;
+function pick(a,n){return a[n%a.length]}
+function box(title,body,link){return '<section class="card"><h3>'+title+'</h3>'+body+(link?'<p><a class="practice" href="'+link+'">進入完整頁面 →</a></p>':'')+'</section>'}
+function qs(arr,start,count,answerIndex){return Array.from({length:count},(_,i)=>{const x=pick(arr,start+i);return '<details><summary>'+(i+1)+'. '+x[4]+'</summary><div class="box"><b>先自己答60–90秒</b><br>'+x[6]+'</div><div class="box blue"><b>參考回答</b><br>'+x[answerIndex]+'</div><div class="box warm"><b>教授在看什麼</b><br>'+x[5]+'</div></details>'}).join('')}
 function draw(){
-  days.innerHTML=Array.from({length:25},(_,i)=>'<button class="'+(i===d?"active":"")+'" data-i="'+i+'"><b>D'+(i+1)+'</b><br><small>10/'+(7+i)+'</small></button>').join("");
-  days.querySelectorAll("button").forEach(b=>b.onclick=()=>{d=Number(b.dataset.i);draw();});
-  const n=pick(NB,d*2),y=pick(YB,d*2),r=pick(DEEP_RESEARCH_A,d),s=pick(DEEP_STATS_A,d);
-  const n2=pick(NB,d*2+1),y2=pick(YB,d*2+1);
-  const cards=[];
-  cards.push(["北大｜主題1",n[4],n[7]]);
-  cards.push(["北大｜主題2",n2[4],"先自己答60–90秒，再看完整答案。"]);
-  cards.push(["交大｜主題1",y[4],y[8]||y[7]]);
-  cards.push(["交大｜主題2",y2[4],"先自己答；若是英文題，至少講90秒。"]);
-  cards.push(["研究理解",r.title,r.oral]);
-  cards.push(["統計理解",s.title,s.oral]);
-  if(d>=8)cards.push(["多人同場補充答","假設前面的人已把主要答案講掉，請對今天的北大或交大題再補一個不同層次。","固定練：承接一句 → 新增面向 → 結論。"]);
-  if(d>=17)cards.push(["Mock","今天至少跑一輪分校模擬。","北大與交大分開抽題，不共用題池。"]);
-  out.innerHTML='<section class="card"><span class="chip">DAY '+(d+1)+'</span><h2>10/'+(7+d)+'</h2><div class="meta">約2.5–3小時；時間不足時優先：研究／統計 → 雙校核心 → 英文。</div></section>'+cards.map(c=>'<section class="card"><h3>'+c[0]+'</h3><div class="box"><b>'+c[1]+'</b></div><div class="box blue">'+c[2]+'</div></section>').join("");
+ days.innerHTML=Array.from({length:25},(_,i)=>'<button class="'+(i===d?"active":"")+'" data-i="'+i+'"><b>D'+(i+1)+'</b><br><small>10/'+(7+i)+'</small></button>').join("");
+ days.querySelectorAll("button").forEach(b=>b.onclick=()=>{d=+b.dataset.i;draw()});
+ const nr=d*3,yr=d*3,rl=d*2;
+ const en=YB.filter(x=>x[2].includes("英文")||x[1].startsWith("英文"));
+ const e=pick(en,d);
+ const r1=pick(RESEARCH_ZERO,rl),r2=pick(RESEARCH_ZERO,rl+1);
+ let html='<section class="card"><span class="chip">DAY '+(d+1)+'</span><h2>10/'+(7+d)+'</h2><p class="meta">建議2.5–3小時。順序：研究理解 → 北大 → 交大 → 英文 → 同場補答。先口頭回答，再看答案。</p></section>';
+ html+=box('研究從零｜今天2章','<details open><summary>LESSON '+r1.n+'｜'+r1.title+'</summary><div class="box green">'+r1.zero+'</div><div class="box blue"><b>套你的研究</b><br>'+r1.yours+'</div><div class="box warm"><b>教授問</b><br>'+r1.prof+'<br><br><b>回答</b><br>'+r1.oral+'</div></details><details><summary>LESSON '+r2.n+'｜'+r2.title+'</summary><div class="box green">'+r2.zero+'</div><div class="box blue"><b>套你的研究</b><br>'+r2.yours+'</div><div class="box warm"><b>教授問</b><br>'+r2.prof+'<br><br><b>回答</b><br>'+r2.oral+'</div></details>','research.html');
+ html+=box('北大企管｜3題',qs(NB,nr,3,7),'ntpu.html');
+ html+=box('陽明交大｜3題',qs(YB,yr,3,8),'nycu.html');
+ html+=box('英文面試｜1題','<details open><summary>'+e[4]+'</summary><div class="box"><b>中文理解</b><br>'+e[8]+'</div><div class="box blue"><b>English answer</b><br>'+e[7]+'</div>'+(e[9]&&e[9].length?'<div class="box warm"><b>Follow-up</b><br>'+e[9][0][0]+'<br><br>'+e[9][0][1]+'</div>':'')+'</details>','english-v4.html');
+ if(d>=5){const x=pick(d%2?YB:NB,d*2);html+=box('多人同場補答｜1題','<div class="box"><b>'+x[4]+'</b></div><div class="box blue"><b>練法</b><br>假設前一位已講主要答案，你只能補一個新的分析層：利害關係人、短長期、成本／風險、證據或限制。回答45–60秒。</div>','group-v4.html')}
+ if(d>=17) html+=box('分校Mock｜1輪','<p>今天至少跑一輪北大或交大模擬。先計時，不要邊看答案邊答。</p>','mock-v4.html');
+ out.innerHTML=html;
 }
 draw();
 });
