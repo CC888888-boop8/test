@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded",function(){
 const root=document.getElementById("app");
 const hero=document.createElement("header");hero.className="hero";hero.innerHTML='<div class="eyebrow">RESEARCH FROM ZERO</div><h1>研究計畫｜從「我完全不會」開始</h1><p>不用先懂統計、論文或研究法。照順序學：先懂研究在幹嘛，再懂你的題目，最後才進統計與口試。</p>';root.appendChild(hero);
-const guide=document.createElement("section");guide.className="card";guide.innerHTML='<h3>你怎麼用這頁</h3><p>第一次：只看「白話」＋「生活例子」。第二次：看「學術概念」＋「套你的研究」。第三次：關掉答案，自己回答教授題。</p><p><b>不要跳著背名詞。</b>你要先真的知道每個概念在解決什麼問題。</p>';root.appendChild(guide);
+const guide=document.createElement("section");guide.className="card";guide.innerHTML='<h3>你怎麼用這頁</h3><p>第一次：只看「白話」＋「生活例子」。第二次：看「學術概念」＋「套你的研究」。第三次：關掉答案，自己回答教授題。</p><p><b>不要跳著背名詞。</b>你要先真的知道每個概念在解決什麼問題。</p>';root.appendChild(guide);const wb=document.createElement("section");wb.className="card";wb.innerHTML='<span class="chip">原 Word 研究口試</span><h3>R 20題＋X 英文研究統計12題</h3><p>先學懂本頁章節，再去做原 Word 題會比較有效。</p><a class="practice" href="word-bank.html?group=R">研究 R 題 →</a> <a class="practice" href="word-bank.html?group=X">英文研究 X 題 →</a>';root.appendChild(wb);
 const units=[...new Set(RESEARCH_ZERO.map(x=>x.unit))];
 const jump=document.createElement("div");jump.className="jump";jump.innerHTML=units.map((u,i)=>'<a href="#u'+i+'">'+u+'</a>').join("");root.appendChild(jump);
 units.forEach((u,i)=>{
