@@ -8,11 +8,11 @@ function addSection(title,arr,school){
   const d=document.createElement("details");const s=document.createElement("summary");s.textContent=x[0]+"｜"+x[4];d.appendChild(s);
   const q=x[4],la=(q.match(/[A-Za-z]/g)||[]).length,zh=(q.match(/[\u4e00-\u9fff]/g)||[]).length,en=la>=14&&zh<=2;const first=document.createElement("div");first.className="box warm";first.innerHTML="<b>如果你是前面回答的人</b><br>"+(school==="北大"?x[7]:(en?x[7]:x[8]));d.appendChild(first);if(school!=="北大"&&en){const z=document.createElement("div");z.className="box";z.innerHTML="<b>中文理解</b><br>"+x[8];d.appendChild(z);}
   const later=document.createElement("div");later.className="box blue";let tip="";
-  if(/研究|統計/.test(x[1])) tip="前面若已講定義，補『例子＋用途／限制』；不要為了不同而亂改正確概念。";
+  if(en) tip=V5_DEPTH_EN.supplement(x[1]); else if(/研究|統計/.test(x[1])) tip="前面若已講定義，補『例子＋用途／限制』；不要為了不同而亂改正確概念。";
   else if(/AI|國際|ESG|商業|管理|人資|數位/.test(x[1])) tip="前面若已講主要立場，換一個層次補：另一利害關係人、短期／長期、成本／風險、或反方限制。";
   else tip="前面若已講相似內容，就用自己的真實經歷、證據或反思補充，不要重複形容詞。";
   later.innerHTML="<b>如果前面的人已經講過</b><br>"+tip;d.appendChild(later);
-  const frame=document.createElement("div");frame.className="box";frame.innerHTML="<b>回答骨架</b><br>"+x[6];d.appendChild(frame);const concept=document.createElement("div");concept.className="box";concept.innerHTML="<b>核心概念</b><br>"+V5_DEPTH.concept(x[1],x[4]);d.appendChild(concept);const pressure=document.createElement("div");pressure.className="box warm";const pp=V5_DEPTH.pressure(x[1]);pressure.innerHTML="<b>壓力追問</b><br><b>"+pp[0]+"</b><br>"+pp[1];d.appendChild(pressure);
+  const frame=document.createElement("div");frame.className="box";frame.innerHTML="<b>回答骨架</b><br>"+x[6];d.appendChild(frame);const concept=document.createElement("div");concept.className="box";concept.innerHTML="<b>核心概念</b><br>"+V5_DEPTH.concept(x[1],x[4]);d.appendChild(concept);const pressure=document.createElement("div");pressure.className="box warm";const pp=(en?V5_DEPTH_EN:V5_DEPTH).pressure(x[1]);pressure.innerHTML="<b>壓力追問</b><br><b>"+pp[0]+"</b><br>"+pp[1];d.appendChild(pressure);
   const prof=document.createElement("div");prof.className="box";prof.innerHTML="<b>教授在看什麼</b><br>"+x[5];d.appendChild(prof);
   sec.appendChild(d);
  });root.appendChild(sec);
