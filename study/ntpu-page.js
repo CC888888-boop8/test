@@ -1,7 +1,8 @@
 window.addEventListener("DOMContentLoaded",function(){
   const root=document.getElementById("app");
-  const A=NTPU_V4.filter(x=>x[3]==="A");
-  const BC=NTPU_V4.filter(x=>x[3]!=="A");
+  const BANK=[...NTPU_V4,...NTPU_V6_EXTRA];
+  const A=BANK.filter(x=>x[3]==="A");
+  const BC=BANK.filter(x=>x[3]!=="A");
   function makeCard(x){
     const d=document.createElement("details");
     const s=document.createElement("summary");
