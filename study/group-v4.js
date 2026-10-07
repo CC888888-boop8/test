@@ -11,7 +11,7 @@ function addSection(title,arr,school){
   else if(/AI|國際|ESG|商業|管理|人資|數位/.test(x[1])) tip="前面若已講主要立場，換一個層次補：另一利害關係人、短期／長期、成本／風險、或反方限制。";
   else tip="前面若已講相似內容，就用自己的真實經歷、證據或反思補充，不要重複形容詞。";
   later.innerHTML="<b>如果前面的人已經講過</b><br>"+tip;d.appendChild(later);
-  const frame=document.createElement("div");frame.className="box";frame.innerHTML="<b>回答骨架</b><br>"+x[6];d.appendChild(frame);
+  const frame=document.createElement("div");frame.className="box";frame.innerHTML="<b>回答骨架</b><br>"+x[6];d.appendChild(frame);const concept=document.createElement("div");concept.className="box";concept.innerHTML="<b>核心概念</b><br>"+V5_DEPTH.concept(x[1],x[4]);d.appendChild(concept);const pressure=document.createElement("div");pressure.className="box warm";const pp=V5_DEPTH.pressure(x[1]);pressure.innerHTML="<b>壓力追問</b><br><b>"+pp[0]+"</b><br>"+pp[1];d.appendChild(pressure);
   const prof=document.createElement("div");prof.className="box";prof.innerHTML="<b>教授在看什麼</b><br>"+x[5];d.appendChild(prof);
   sec.appendChild(d);
  });root.appendChild(sec);
