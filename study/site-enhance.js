@@ -55,7 +55,7 @@ function refreshVoiceOptions(){
  if(current&&list.some(v=>encodeURIComponent(v.voiceURI)===current))sel.value=current;
 }
 function resetActiveButton(){
- if(activeButton){activeButton.classList.remove("playing");activeButton.textContent="▶︎ 聽題目"}
+ if(activeButton){activeButton.classList.remove("playing");activeButton.textContent=activeButton.dataset.idleLabel||"▶︎ 播放"}
  activeButton=null;activeUtterance=null;
 }
 function stopSpeech(){if(!SS)return;SS.cancel();resetActiveButton()}
@@ -156,16 +156,30 @@ async function lookupWordInline(panel,q){
 function addQuestionTools(summary){
  if(summary.dataset.questionTools)return;
  const q=cleanQuestionText(summary);if(!q||!englishScore(q).ok)return;
+ const details=summary.closest("details");if(!details)return;
  summary.dataset.questionTools="1";summary.dataset.questionText=q;ensureAudioBar();
- const row=document.createElement("span");row.className="question-tools";
- const sp=document.createElement("button");sp.type="button";sp.className="speak-btn";sp.textContent="▶︎ 聽題目";
- sp.onmousedown=e=>e.stopPropagation();sp.onclick=e=>{e.preventDefault();e.stopPropagation();speakQuestion(q,sp)};
- const tr=document.createElement("button");tr.type="button";tr.className="lookup-btn";tr.textContent="Aa 中譯／查單字";
- tr.onmousedown=e=>{lastSelection=window.getSelection()?.toString().trim()||"";e.stopPropagation()};
+ const row=document.createElement("div");row.className="question-tools";row.dataset.forQuestion=hash(q);
+ const sp=document.createElement("button");sp.type="button";sp.className="speak-btn";sp.dataset.idleLabel="▶︎ 聽題目";sp.textContent=sp.dataset.idleLabel;
+ sp.onclick=e=>{e.preventDefault();e.stopPropagation();speakQuestion(q,sp)};
+ const tr=document.createElement("button");tr.type="button";tr.className="lookup-btn";tr.textContent="Aa 中文題意／查單字";
+ tr.onmousedown=e=>{lastSelection=window.getSelection()?.toString().trim()||""};
  tr.onclick=e=>{e.preventDefault();e.stopPropagation();const panel=ensureInlineLookup(summary,q);if(panel){panel.open=true;const input=panel.querySelector(".word-input");if(lastSelection&&/^[A-Za-z][A-Za-z\-'. ]{0,50}$/.test(lastSelection))input.value=lastSelection;input.focus()}};
- row.append(sp,tr);summary.appendChild(row);
+ row.append(sp,tr);
+ details.insertAdjacentElement("afterend",row);
 }
-
+function answerText(box){
+ const c=box.cloneNode(true);c.querySelectorAll("b,.answer-speak-btn,.speak-btn,.lookup-btn").forEach(x=>x.remove());
+ return c.textContent.replace(/\s+/g," ").trim();
+}
+function addAnswerSpeech(box){
+ if(box.dataset.answerSpeech)return;
+ const text=answerText(box),latin=(text.match(/[A-Za-z]/g)||[]).length,zh=(text.match(/[\u4e00-\u9fff]/g)||[]).length;
+ if(latin<35||zh>Math.max(3,latin*.08))return;
+ box.dataset.answerSpeech="1";
+ const btn=document.createElement("button");btn.type="button";btn.className="speak-btn answer-speak-btn";btn.dataset.idleLabel="▶︎ 聽答案";btn.textContent=btn.dataset.idleLabel;
+ btn.onclick=e=>{e.preventDefault();e.stopPropagation();speakQuestion(text,btn)};
+ box.insertBefore(btn,box.firstChild);
+}
 function noteKey(d){return "study-note:"+page()+":"+hash((d.querySelector("summary")?.dataset.questionText||d.querySelector("summary")?.textContent||""))}
 function addNotes(d){
  if(d.dataset.notesReady||d.classList.contains("note-panel")||d.classList.contains("question-lookup-panel"))return;
@@ -195,8 +209,8 @@ function nav(){
 }
 function enhance(root=document){
  if(root.matches?.("details")&&!root.classList.contains("note-panel")&&!root.classList.contains("question-lookup-panel"))addNotes(root);
- if(root.matches?.("summary")&&!root.closest(".note-panel,.question-lookup-panel"))addQuestionTools(root);
- root.querySelectorAll?.("details:not(.note-panel):not(.question-lookup-panel)").forEach(addNotes);
+ if(root.matches?.("summary")&&!root.closest(".note-panel,.question-lookup-panel"))addQuestionTools(root);if(root.matches?.(".box"))addAnswerSpeech(root);
+ root.querySelectorAll?.("details:not(.note-panel):not(.question-lookup-panel)").forEach(addNotes);root.querySelectorAll?.(".box").forEach(addAnswerSpeech);
  root.querySelectorAll?.("summary").forEach(s=>{if(!s.closest(".note-panel,.question-lookup-panel"))addQuestionTools(s)});
  root.querySelectorAll?.("details:not(.note-panel):not(.question-lookup-panel)[open]").forEach(d=>d.removeAttribute("open"));
 }
