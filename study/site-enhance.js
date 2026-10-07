@@ -1,5 +1,5 @@
 (function(){
-const pages=[["index.html","🏠","今日"],["interview.html","🎓","中文面試"],["english.html","🎙️","英文面試"],["group.html","👥","團體"],["toeic.html","📝","多益"],["more.html","▦","更多"]];
+const pages=[["index.html","🏠","今日"],["interview.html","🎓","中文面試"],["english.html","🎙️","英文面試"],["group.html","👥","同場口試"],["toeic.html","📝","多益"],["more.html","▦","更多"]];
 function go(){const old=document.querySelector(".nav,.bottom-nav");const nav=document.createElement("nav");nav.className="bottom-nav";const name=location.pathname.split("/").pop()||"index.html";nav.innerHTML=pages.map(([u,ic,t])=>'<a href="'+u+'" class="'+(u===name?"active":"")+'"><span class="nav-ico">'+ic+'</span>'+t+'</a>').join("");if(old)old.replaceWith(nav);else document.body.append(nav);const style=document.createElement("link");style.rel="stylesheet";style.href="study-theme.css";document.head.append(style);}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go();
 })();
