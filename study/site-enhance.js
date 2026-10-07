@@ -117,12 +117,14 @@ function saveVocab(item){
 function toolPanelKey(summary){return "tool-"+hash(summary.dataset.questionText||summary.textContent)}
 function ensureInlineLookup(summary,q){
  const details=summary.closest("details");if(!details)return null;
- let panel=details.nextElementSibling;
- if(panel?.classList.contains("question-lookup-panel"))return panel;
- // 若題目後面已有筆記，查字區放在筆記後面，但仍緊跟這一題，不放頁底。
- let anchor=details.nextElementSibling;
- if(anchor?.classList.contains("note-panel"))anchor=anchor;
- panel=document.createElement("details");panel.className="question-lookup-panel";
+ const owner=hash(q);
+ let panel=document.querySelector('.question-lookup-panel[data-owner="'+owner+'"]');
+ if(panel)return panel;
+ const tools=document.querySelector('.question-tools[data-for-question="'+owner+'"]');
+ let anchor=tools||details;
+ const note=tools?.nextElementSibling?.classList?.contains("note-panel")?tools.nextElementSibling:null;
+ if(note)anchor=tools;
+ panel=document.createElement("details");panel.className="question-lookup-panel";panel.dataset.owner=owner;
  const zh=translationFor(q,summary);
  panel.innerHTML='<summary>Aa 中文題意／查單字</summary><div class="lookup-body">'+
    '<div class="question-zh-inline">'+(zh?'<b>中文題意：</b> '+esc(zh):'<b>中文題意：</b> 目前沒有內建翻譯，可用下方整句翻譯。')+'</div>'+
@@ -130,7 +132,7 @@ function ensureInlineLookup(summary,q){
    '<div class="dict-result"></div><div class="word-links"></div>'+
    '<label>我自己的中文意思<input class="meaning-input" placeholder="例如：retention＝留存"></label>'+
    '<label>我的例句／記法<textarea class="word-note" rows="2" placeholder="用自己的方式記"></textarea></label>'+
-   '<button type="button" class="save-word">★ 存到單字本</button> <button type="button" class="clear-lookup">清空查字</button> <button type="button" class="remove-lookup">移除這個翻譯／查字區</button> <a class="vocab-link" href="vocab-notebook.html">我的單字本 →</a>'+
+   '<div class="lookup-actions"><button type="button" class="save-word">★ 存到單字本</button><button type="button" class="clear-lookup">清空查字</button><button type="button" class="remove-lookup">移除這個翻譯／查字區</button><a class="vocab-link" href="vocab-notebook.html">我的單字本 →</a></div>'+
    '</div>';
  anchor.insertAdjacentElement("afterend",panel);
  const input=panel.querySelector(".word-input");
