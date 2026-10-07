@@ -43,3 +43,48 @@ extra:function(cat){
  return [["教授再問：『你的判斷依據是什麼？』","我會指出需要的資料、比較基準或可觀察指標，而不是只靠直覺。"],["教授再問：『反方怎麼說？』","我會主動說明答案成立的條件與代價，避免把管理問題答成單一路線。"]];
 }
 };
+window.V5_DEPTH_EN={
+supplement:function(cat){
+ if(/research|研究|statistics|統計/i.test(cat))return "If someone already gave the definition, add a concrete example, explain what the method can answer, and state one limitation.";
+ if(/AI|科技|GPT/i.test(cat))return "If someone already discussed efficiency, add the business model, governance, or risk side. If they focused on risk, add the conditions under which the benefit is real.";
+ if(/finance|財務|經濟|M&A/i.test(cat))return "If others focused on cost, add cash flow or cost of capital. If they focused on valuation, add execution and integration risk.";
+ if(/management|人資|領導|團隊|世代/i.test(cat))return "If others focused on personality, add structure: incentives, job design, decision rights, or measurable behavior.";
+ return "Briefly connect to the previous answer, then add one new layer such as another stakeholder, a short-term versus long-term trade-off, or a measurable decision criterion.";
+},
+mistake:function(cat){
+ if(/research|研究|statistics|統計/i.test(cat))return "Do not only recite a definition. Give an example, explain the purpose, and be clear about what the method cannot prove.";
+ if(/AI|科技|GPT/i.test(cat))return "Avoid saying only that AI is useful or dangerous. Explain the business mechanism, cost, risk, and how you would measure the result.";
+ if(/finance|財務|經濟|M&A/i.test(cat))return "Do not equate high growth with high value. Mention cash flow, capital needs, risk, and the price paid.";
+ return "Do not spend too long on background. Answer the question first, explain why, give one example, and end with a clear conclusion.";
+},
+pressure:function(cat){
+ if(/research|研究/i.test(cat))return ["Professor: Your answer still sounds like a business proposal, not research. What makes it research?","I would turn the practical problem into a testable research question. That means defining the constructs, explaining the theoretical relationship, specifying how I will measure them, and choosing a design that supports the kind of conclusion I want to make. My work experience gives me the problem, but it is not the evidence."];
+ if(/statistics|統計/i.test(cat))return ["Professor: You are only repeating a definition. Do you really understand it?","I would explain it with my own research. I would say when the method is appropriate, what question it answers, what assumptions matter, and what conclusion it still cannot support."];
+ if(/AI|科技|GPT/i.test(cat))return ["Professor: This sounds generic. What is your actual business analysis?","I would narrow the answer to one mechanism, such as cost structure, switching costs, data advantage, computing dependence, or governance risk, and then explain which metric would show whether that mechanism is actually important."];
+ if(/finance|財務|經濟|M&A/i.test(cat))return ["Professor: You are describing the news. Where is the financial logic?","I would translate the event into cash flow, cost of capital, return on invested capital, or integration risk, and explain exactly how it changes firm value."];
+ if(/management|人資|領導|團隊|世代/i.test(cat))return ["Professor: Isn't that just saying people should communicate more?","I would make it operational: clarify goals and decision rights, redesign the workflow, adjust incentives or feedback, and define what behavior or outcome should improve."];
+ return ["Professor: Your answer is still too superficial. Can you go one level deeper?","I would explain who is affected, through what mechanism, what the trade-off is, and what evidence or metric I would use before making the final decision."];
+},
+extra:function(cat){
+ if(/research|研究/i.test(cat))return [
+  ["How do you know your measure really captures the construct you claim to study?","I would start from the construct definition and existing validated scales, then use pretesting and reliability and validity evidence. A stable scale is not enough if it is measuring the wrong thing."],
+  ["What if your main result is not statistically significant?","I would report it honestly, examine the estimate and confidence interval, check power and measurement quality, and revisit the theory. I would not keep changing the model just to get significance."]
+ ];
+ if(/statistics|統計/i.test(cat))return [
+  ["When would this method be inappropriate?","I would check the measurement scale, independence of observations, model assumptions, and the research design. The answer depends on the method, not only on sample size."],
+  ["Can this method prove causation?","Not by itself. Causal interpretation requires a credible identification strategy, such as random assignment or a strong quasi-experimental design."]
+ ];
+ if(/AI|科技|GPT/i.test(cat))return [
+  ["Why shouldn't a company adopt AI everywhere?","Because the value depends on the use case. Firms also need to consider integration cost, error cost, data governance, employee adoption, and accountability."],
+  ["What numbers would you monitor?","I would look at cost savings or revenue lift, adoption, error or quality rates, unit economics, and any new risk created by the system."]
+ ];
+ if(/finance|財務|經濟|M&A/i.test(cat))return [
+  ["Why can high growth still destroy value?","Because growth can require heavy capital and still produce returns below the cost of capital. Revenue growth alone does not guarantee value creation."],
+  ["How would you do a sensitivity analysis?","I would identify the two or three assumptions that drive the conclusion, such as demand, price, utilization, cost, or discount rate, and test whether the decision still holds across reasonable ranges."]
+ ];
+ return [
+  ["What evidence would change your mind?","I would define the metric or comparison that matters before making the decision, so the conclusion is not based only on intuition."],
+  ["What is the strongest counterargument?","I would state the main condition under which my recommendation might fail, then explain how I would monitor that risk."]
+ ];
+}
+};
