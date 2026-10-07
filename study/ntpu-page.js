@@ -37,7 +37,7 @@ window.addEventListener("DOMContentLoaded",function(){
   root.appendChild(hero);
   const intro=document.createElement("section");intro.className="card";
   intro.innerHTML="<h3>能力地圖</h3><ol><li><b>自我與動機</b>：自介、讀研原因、校系適配。</li><li><b>研究準備度</b>：研究問題、方法、量化經驗、可行性。</li><li><b>多人同場表達</b>：第一答完整、後答補新角度。</li><li><b>管理判斷</b>：AI、人資、數位轉型、商業情境。</li><li><b>備審深追</b>：工作轉換、主管經驗、專題與學習規劃。</li></ol>";
-  root.appendChild(intro);
+  root.appendChild(intro);const wb=document.createElement("section");wb.className="card";wb.innerHTML='<span class="chip">原 Word 題庫</span><h3>北大舊題已完整補回</h3><p>N 31題＋P壓力20題＋G情境18題都在完整題庫。</p><a class="practice" href="word-bank.html?group=N">北大 N 題 →</a> <a class="practice" href="word-bank.html?group=P">壓力 P 題 →</a>';root.appendChild(wb);
   const j=document.createElement("div");j.className="jump";j.innerHTML='<a href="#a">A級必讀</a><a href="#bc">B/C級</a><a href="#method">回答法</a>';root.appendChild(j);
   [["a","A級｜近年直接且高度相關",A],["bc","B/C級｜補廣度與備援",BC]].forEach(sec=>{
     const section=document.createElement("section");section.className="section";section.id=sec[0];
