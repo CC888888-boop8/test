@@ -9,8 +9,11 @@ window.addEventListener("DOMContentLoaded",function(){
     d.appendChild(s);
     const parts=[
       ["教授在看什麼",x[5]],
+      ["核心概念要懂什麼",V5_DEPTH.concept(x[1],x[4])],
       ["回答骨架",x[6]],
-      ["你的完整回答",x[7]]
+      ["你的完整回答",x[7]],
+      ["如果前面的人已經答過",V5_DEPTH.supplement(x[1])],
+      ["常見失分點",V5_DEPTH.mistake(x[1])]
     ];
     parts.forEach((p,i)=>{
       const box=document.createElement("div");
@@ -18,10 +21,11 @@ window.addEventListener("DOMContentLoaded",function(){
       box.innerHTML="<b>"+p[0]+"</b><br>"+p[1];
       d.appendChild(box);
     });
-    if(x[8]&&x[8].length){
+    const extras=[...(x[8]||[]),...V5_DEPTH.extra(x[1]),V5_DEPTH.pressure(x[1])];
+    if(extras.length){
       const box=document.createElement("div");
       box.className="box warm";
-      box.innerHTML="<b>追問攻防</b>"+x[8].map(z=>"<p><b>"+z[0]+"</b><br>"+z[1]+"</p>").join("");
+      box.innerHTML="<b>追問攻防</b>"+extras.map(z=>"<p><b>"+z[0]+"</b><br>"+z[1]+"</p>").join("");
       d.appendChild(box);
     }
     const a=document.createElement("a");
