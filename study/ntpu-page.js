@@ -1,0 +1,1 @@
+window.renderNtpu=function(){return NTPU_V4.length;};
