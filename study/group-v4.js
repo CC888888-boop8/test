@@ -1,5 +1,6 @@
 window.addEventListener("DOMContentLoaded",function(){
 const root=document.getElementById("app");
+const NB=[...NTPU_V4,...NTPU_V6_EXTRA],YB=[...NYCU_V4,...NYCU_V6_EXTRA];
 const hero=document.createElement("header");hero.className="hero";hero.innerHTML='<div class="eyebrow">SAME-ROOM ORAL V4</div><h1>多人同場口試｜不是自由團體討論</h1><p>北大與陽明交大都以多人同場個答、輪答／搶答、教授追問為核心。這頁練的是「自己答深」與「前面有人講過時怎麼補」。</p>';root.appendChild(hero);
 function addSection(title,arr,school){
  const sec=document.createElement("section");sec.className="section";const h=document.createElement("h2");h.textContent=title+"（"+arr.length+"題）";sec.appendChild(h);
@@ -16,6 +17,6 @@ function addSection(title,arr,school){
   sec.appendChild(d);
  });root.appendChild(sec);
 }
-addSection("北大｜共同題／搶答／輪答",NTPU_V4.filter(x=>/搶答|多人同場|個別問答/.test(x[2])),"北大");
-addSection("陽明交大｜多人同場個答",NYCU_V4.filter(x=>/多人同場|英文抽題|英文／中文/.test(x[2])),"交大");
+addSection("北大｜共同題／搶答／輪答",NB.filter(x=>/搶答|多人同場|個別問答/.test(x[2])),"北大");
+addSection("陽明交大｜多人同場個答",YB.filter(x=>/多人同場|英文抽題|英文／中文/.test(x[2])),"交大");
 });
