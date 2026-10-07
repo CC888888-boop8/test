@@ -3,13 +3,14 @@ window.addEventListener("DOMContentLoaded",function(){
   const BANK=[...NYCU_V4,...NYCU_V6_EXTRA];
   const stats=["統計／平均數","統計／隨機抽樣","統計／遺漏變數","統計／虛無假設","研究方法／信效度","統計／專業","統計／共變異數卡方"];
   function isEnglish(x){return /英文/.test(x[1])||x[1].includes("AI")||x[1].includes("ESG")||x[1].includes("全球化")}
+  function isEnglishQuestion(q){const la=(q.match(/[A-Za-z]/g)||[]).length,zh=(q.match(/[\u4e00-\u9fff]/g)||[]).length;return la>=14&&zh<=2}
   function makeCard(x){
     const d=document.createElement("details");
     const s=document.createElement("summary");s.textContent=x[0]+"｜"+x[1]+"｜"+x[4];d.appendChild(s);
-    [["教授在看什麼",x[5]],["核心概念要懂什麼",V5_DEPTH.concept(x[1],x[4])],["回答骨架",x[6]],["English answer",x[7]],["中文理解／回答",x[8]],["如果前面的人已經答過",V5_DEPTH.supplement(x[1])],["常見失分點",V5_DEPTH.mistake(x[1])]].forEach((p,i)=>{
+    [["教授在看什麼",x[5]],["核心概念要懂什麼",V5_DEPTH.concept(x[1],x[4])],["回答骨架",x[6]],["English answer",x[7]],["中文理解／回答",x[8]],["如果前面的人已經答過",isEnglishQuestion(x[4])?V5_DEPTH_EN.supplement(x[1]):V5_DEPTH.supplement(x[1])],["常見失分點",isEnglishQuestion(x[4])?V5_DEPTH_EN.mistake(x[1]):V5_DEPTH.mistake(x[1])]].forEach((p,i)=>{
       const box=document.createElement("div");box.className="box"+(i===3?" blue":"");box.innerHTML="<b>"+p[0]+"</b><br>"+p[1];d.appendChild(box);
     });
-    const qs=[...(x[9]||[]),...V5_DEPTH.extra(x[1]),V5_DEPTH.pressure(x[1])];const box=document.createElement("div");box.className="box warm";box.innerHTML="<b>教授追問攻防</b>"+qs.map(z=>"<p><b>"+z[0]+"</b><br>"+z[1]+"</p>").join("");d.appendChild(box);
+    const en=isEnglishQuestion(x[4]);const depth=en?V5_DEPTH_EN:V5_DEPTH;const qs=[...(x[9]||[]),...depth.extra(x[1]),depth.pressure(x[1])];const box=document.createElement("div");box.className="box warm";box.innerHTML="<b>教授追問攻防</b>"+qs.map(z=>"<p><b>"+z[0]+"</b><br>"+z[1]+"</p>").join("");d.appendChild(box);
     if(x[10]&&String(x[10]).startsWith("http")){const a=document.createElement("a");a.className="src";a.target="_blank";a.rel="noopener";a.href=x[10];a.textContent="查看考生心得來源 ↗";d.appendChild(a);}
     return d;
   }
