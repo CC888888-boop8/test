@@ -1,7 +1,8 @@
 window.addEventListener("DOMContentLoaded",function(){
 const root=document.getElementById("app");
 const hero=document.createElement("header");hero.className="hero";hero.innerHTML='<div class="eyebrow">ENGLISH V4</div><h1>英文面試｜以陽明交大實際英文題為主</h1><p>不再以廣告議題當主軸。先練歷屆英文抽題，再練同一能力軸的延伸。</p>';root.appendChild(hero);
-const direct=NYCU_V4.filter(x=>x[2].includes("英文")||x[1].startsWith("英文"));
+const BANK=[...NYCU_V4,...NYCU_V6_EXTRA];
+const direct=BANK.filter(x=>x[2].includes("英文")||x[1].startsWith("英文"));
 const section=document.createElement("section");section.className="section";section.innerHTML="<h2>陽明交大｜歷屆英文直接題（"+direct.length+"題）</h2>";root.appendChild(section);
 direct.forEach(x=>{const d=document.createElement("details");const s=document.createElement("summary");s.textContent=x[0]+"｜"+x[4];d.appendChild(s);[["教授在看什麼",x[5]],["答題骨架",x[6]],["English answer",x[7]],["中文理解",x[8]]].forEach((p,i)=>{const b=document.createElement("div");b.className="box"+(i===3?" blue":"");b.innerHTML="<b>"+p[0]+"</b><br>"+p[1];d.appendChild(b)});const qs=[...(x[9]||[]),...V5_DEPTH.extra(x[1]),V5_DEPTH.pressure(x[1])];const b=document.createElement("div");b.className="box warm";b.innerHTML="<b>教授追問攻防</b>"+qs.map(z=>"<p><b>"+z[0]+"</b><br>"+z[1]+"</p>").join("");d.appendChild(b);const c=document.createElement("div");c.className="box blue";c.innerHTML="<b>如果前面的人已經答過</b><br>"+V5_DEPTH.supplement(x[1]);d.appendChild(c);section.appendChild(d)});
 const tip=document.createElement("section");tip.className="card";tip.innerHTML="<h3>英文答題固定骨架</h3><p><b>Position</b>：先一句回答。</p><p><b>Mechanism</b>：為什麼，講商業機制。</p><p><b>Example / Evidence</b>：補一個例子或判斷依據。</p><p><b>Limitation</b>：主動講限制或反方。</p><p><b>Conclusion</b>：收回你的立場。</p><p>目標不是用難字，而是90–120秒內講得完整、能被追問。</p>";root.appendChild(tip);
