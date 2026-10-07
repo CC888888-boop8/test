@@ -8,7 +8,7 @@ function qcard(t,q,n,answer,cat){
  const d=document.createElement("details");const s=document.createElement("summary");s.innerHTML='<span class="chip">'+t+'</span><div>'+q+'</div><div class="small">'+(n||"先自己回答，再展開參考。")+'</div>';d.appendChild(s);
  const a=document.createElement("div");a.className="box blue";a.innerHTML="<b>參考答法</b><br>"+answer;d.appendChild(a);
  const c=document.createElement("div");c.className="box";c.innerHTML="<b>核心概念</b><br>"+V5_DEPTH.concept(cat,q);d.appendChild(c);
- const p=V5_DEPTH.pressure(cat);const w=document.createElement("div");w.className="box warm";w.innerHTML="<b>壓力追問</b><br><b>"+p[0]+"</b><br>"+p[1];d.appendChild(w);
+ const la=(q.match(/[A-Za-z]/g)||[]).length,zh=(q.match(/[\u4e00-\u9fff]/g)||[]).length,en=la>=14&&zh<=2;const p=(en?V5_DEPTH_EN:V5_DEPTH).pressure(cat);const w=document.createElement("div");w.className="box warm";w.innerHTML="<b>壓力追問</b><br><b>"+p[0]+"</b><br>"+p[1];d.appendChild(w);
  return d;
 }
 function ntpu(){
