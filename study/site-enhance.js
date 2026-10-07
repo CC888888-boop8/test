@@ -74,6 +74,8 @@ function nav(){
  if(old)old.replaceWith(n);else document.body.append(n);
 }
 function enhance(root=document){
+ if(root.matches?.("details"))addNotes(root);
+ if(root.matches?.("summary,.en,.box,p,li"))addSpeak(root);
  root.querySelectorAll?.("details").forEach(addNotes);
  root.querySelectorAll?.("summary,.en,.box,p,li").forEach(addSpeak);
  root.querySelectorAll?.("details[open]").forEach(d=>d.removeAttribute("open"));
