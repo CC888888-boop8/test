@@ -1,5 +1,6 @@
 window.addEventListener("DOMContentLoaded",function(){
 const root=document.getElementById("app");
+const NB=[...NB,...NTPU_V6_EXTRA],YB=[...YB,...NYCU_V6_EXTRA];
 const phases=[
 ["10/7–10/10","建立兩校差異＋研究統計底座"],
 ["10/11–10/17","北大個人／研究＋交大英文／統計"],
@@ -15,8 +16,8 @@ function pick(arr,n){return arr[n%arr.length]}
 function draw(){
   days.innerHTML=Array.from({length:25},(_,i)=>'<button class="'+(i===d?"active":"")+'" data-i="'+i+'"><b>D'+(i+1)+'</b><br><small>10/'+(7+i)+'</small></button>').join("");
   days.querySelectorAll("button").forEach(b=>b.onclick=()=>{d=Number(b.dataset.i);draw();});
-  const n=pick(NTPU_V4,d*2),y=pick(NYCU_V4,d*2),r=pick(DEEP_RESEARCH_A,d),s=pick(DEEP_STATS_A,d);
-  const n2=pick(NTPU_V4,d*2+1),y2=pick(NYCU_V4,d*2+1);
+  const n=pick(NB,d*2),y=pick(YB,d*2),r=pick(DEEP_RESEARCH_A,d),s=pick(DEEP_STATS_A,d);
+  const n2=pick(NB,d*2+1),y2=pick(YB,d*2+1);
   const cards=[];
   cards.push(["北大｜主題1",n[4],n[7]]);
   cards.push(["北大｜主題2",n2[4],"先自己答60–90秒，再看完整答案。"]);
