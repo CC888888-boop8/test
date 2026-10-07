@@ -5,10 +5,10 @@ window.addEventListener("DOMContentLoaded",function(){
   function makeCard(x){
     const d=document.createElement("details");
     const s=document.createElement("summary");s.textContent=x[0]+"｜"+x[1]+"｜"+x[4];d.appendChild(s);
-    [["教授在看什麼",x[5]],["回答骨架",x[6]],["English answer",x[7]],["中文理解／回答",x[8]]].forEach((p,i)=>{
+    [["教授在看什麼",x[5]],["核心概念要懂什麼",V5_DEPTH.concept(x[1],x[4])],["回答骨架",x[6]],["English answer",x[7]],["中文理解／回答",x[8]],["如果前面的人已經答過",V5_DEPTH.supplement(x[1])],["常見失分點",V5_DEPTH.mistake(x[1])]].forEach((p,i)=>{
       const box=document.createElement("div");box.className="box"+(i===3?" blue":"");box.innerHTML="<b>"+p[0]+"</b><br>"+p[1];d.appendChild(box);
     });
-    if(x[9]&&x[9].length){const box=document.createElement("div");box.className="box warm";box.innerHTML="<b>教授追問</b>"+x[9].map(z=>"<p><b>"+z[0]+"</b><br>"+z[1]+"</p>").join("");d.appendChild(box);}
+    const qs=[...(x[9]||[]),...V5_DEPTH.extra(x[1]),V5_DEPTH.pressure(x[1])];const box=document.createElement("div");box.className="box warm";box.innerHTML="<b>教授追問攻防</b>"+qs.map(z=>"<p><b>"+z[0]+"</b><br>"+z[1]+"</p>").join("");d.appendChild(box);
     const a=document.createElement("a");a.className="src";a.target="_blank";a.rel="noopener";a.href=x[10];a.textContent="查看考生心得來源 ↗";d.appendChild(a);
     return d;
   }
