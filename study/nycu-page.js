@@ -10,7 +10,7 @@ window.addEventListener("DOMContentLoaded",function(){
       const box=document.createElement("div");box.className="box"+(i===3?" blue":"");box.innerHTML="<b>"+p[0]+"</b><br>"+p[1];d.appendChild(box);
     });
     const qs=[...(x[9]||[]),...V5_DEPTH.extra(x[1]),V5_DEPTH.pressure(x[1])];const box=document.createElement("div");box.className="box warm";box.innerHTML="<b>教授追問攻防</b>"+qs.map(z=>"<p><b>"+z[0]+"</b><br>"+z[1]+"</p>").join("");d.appendChild(box);
-    const a=document.createElement("a");a.className="src";a.target="_blank";a.rel="noopener";a.href=x[10];a.textContent="查看考生心得來源 ↗";d.appendChild(a);
+    if(x[10]&&String(x[10]).startsWith("http")){const a=document.createElement("a");a.className="src";a.target="_blank";a.rel="noopener";a.href=x[10];a.textContent="查看考生心得來源 ↗";d.appendChild(a);}
     return d;
   }
   const hero=document.createElement("header");hero.className="hero";hero.innerHTML='<div class="eyebrow">NYCU INSTITUTE OF BUSINESS AND MANAGEMENT</div><h1>陽明交大經管｜英文、統計、商管廣度、深追</h1><p>近年不是只考AI，而是英文商業論述＋統計研究方法＋管理／財務／經濟廣度，再由教授一路追問。</p>';root.appendChild(hero);
