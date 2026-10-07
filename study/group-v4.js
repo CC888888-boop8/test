@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded",function(){
 const root=document.getElementById("app");
 const NB=[...NTPU_V4,...NTPU_V6_EXTRA],YB=[...NYCU_V4,...NYCU_V6_EXTRA];
-const hero=document.createElement("header");hero.className="hero";hero.innerHTML='<div class="eyebrow">SAME-ROOM ORAL V4</div><h1>多人同場口試｜不是自由團體討論</h1><p>北大與陽明交大都以多人同場個答、輪答／搶答、教授追問為核心。這頁練的是「自己答深」與「前面有人講過時怎麼補」。</p>';root.appendChild(hero);
+const hero=document.createElement("header");hero.className="hero";hero.innerHTML='<div class="eyebrow">SAME-ROOM ORAL</div><h1>多人同場口試｜同場，不等於自由團討</h1><p>北大近年公開心得可看到4–5人一起進場，可能依序回答或舉手搶答，再由教授追問。你要練的是自己答完整；如果前面的人已講過，就補一個新的分析層次。</p>';root.appendChild(hero);const verified=document.createElement("section");verified.className="card";verified.innerHTML='<span class="chip">北大實際型態</span><h3>核心是「同場個答＋補充」</h3><p><b>115：</b>有4–5人同場、依序回答與搶答的分享。</p><p><b>114：</b>也有4人一起面、採搶答，並曾出現英文回答要求。</p><p class="meta">不同年度與組別可能調整，所以這裡不把自由團體討論當預設。</p>';root.appendChild(verified);
 function addSection(title,arr,school){
  const sec=document.createElement("section");sec.className="section";const h=document.createElement("h2");h.textContent=title+"（"+arr.length+"題）";sec.appendChild(h);
  arr.forEach(x=>{
@@ -19,4 +19,5 @@ function addSection(title,arr,school){
 }
 addSection("北大｜共同題／搶答／輪答",NB.filter(x=>/搶答|多人同場|個別問答/.test(x[2])),"北大");
 addSection("陽明交大｜多人同場個答",YB.filter(x=>/多人同場|英文抽題|英文／中文/.test(x[2])),"交大");
+const G=WORD_BANK.filter(x=>x.id.startsWith("G"));const gs=document.createElement("section");gs.className="section";gs.innerHTML='<h2>原 Word｜G 情境／多人同場題（'+G.length+'題）</h2><div class="card"><p>這18題拿來練「快速立場＋理由＋教授追問」。它們是原Word的情境訓練，不代表學校一定逐字照出。</p></div>';G.forEach(x=>{const d=document.createElement("details");const q=document.createElement("summary");q.innerHTML='<span class="chip">'+x.id+'</span><div>'+x.question+'</div>';d.appendChild(q);const a=document.createElement("div");a.className="box blue";a.innerHTML='<b>口說參考回答</b><br>'+x.answer;d.appendChild(a);const p=document.createElement("div");p.className="box warm";p.innerHTML='<b>教授追問</b><br>'+x.follow+'<br><br><b>第二層回答</b><br>'+x.second;d.appendChild(p);const t=document.createElement("div");t.className="box";t.innerHTML='<b>提醒</b><br>'+x.tip;d.appendChild(t);gs.appendChild(d)});root.appendChild(gs);
 });
