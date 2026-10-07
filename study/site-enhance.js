@@ -26,7 +26,7 @@ function voiceScore(v,lang){
  if(/Jenny|Aria|Guy|Samantha|Ava|Sonia|Serena|Daniel|Ryan|Libby|Google/i.test(n))s+=30;
  if(/Compact|Novelty/i.test(n))s-=80;return s
 }
-function bestVoice(lang){return voices.slice().sort((a,b)=>voiceScore(b,lang)-voiceScore(a,lang))[0]||null}
+function bestVoice(lang){const en=voices.filter(v=>(v.lang||"").toLowerCase().startsWith("en"));return en.slice().sort((a,b)=>voiceScore(b,lang)-voiceScore(a,lang))[0]||null}
 function refreshVoiceOptions(){
  if(!audioBar)return;const sel=audioBar.querySelector(".voice-select");if(!sel)return;
  const current=localStorage.getItem("study-voice")||"";const accent=localStorage.getItem("study-accent")||"us",lang=accent==="uk"?"en-GB":"en-US";
