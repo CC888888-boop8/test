@@ -6,7 +6,7 @@ function addSection(title,arr,school){
  const sec=document.createElement("section");sec.className="section";const h=document.createElement("h2");h.textContent=title+"（"+arr.length+"題）";sec.appendChild(h);
  arr.forEach(x=>{
   const d=document.createElement("details");const s=document.createElement("summary");s.textContent=x[0]+"｜"+x[4];d.appendChild(s);
-  const first=document.createElement("div");first.className="box warm";first.innerHTML="<b>如果你是前面回答的人</b><br>"+(school==="北大"?x[7]:x[8]);d.appendChild(first);
+  const q=x[4],la=(q.match(/[A-Za-z]/g)||[]).length,zh=(q.match(/[\u4e00-\u9fff]/g)||[]).length,en=la>=14&&zh<=2;const first=document.createElement("div");first.className="box warm";first.innerHTML="<b>如果你是前面回答的人</b><br>"+(school==="北大"?x[7]:(en?x[7]:x[8]));d.appendChild(first);if(school!=="北大"&&en){const z=document.createElement("div");z.className="box";z.innerHTML="<b>中文理解</b><br>"+x[8];d.appendChild(z);}
   const later=document.createElement("div");later.className="box blue";let tip="";
   if(/研究|統計/.test(x[1])) tip="前面若已講定義，補『例子＋用途／限制』；不要為了不同而亂改正確概念。";
   else if(/AI|國際|ESG|商業|管理|人資|數位/.test(x[1])) tip="前面若已講主要立場，換一個層次補：另一利害關係人、短期／長期、成本／風險、或反方限制。";
